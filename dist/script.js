@@ -139,7 +139,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core */ "./src/js/lib/core.js");
 /* harmony import */ var _modules_display__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/display */ "./src/js/lib/modules/display.js");
 /* harmony import */ var _modules_classes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/classes */ "./src/js/lib/modules/classes.js");
-/* harmony import */ var _modules_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/actions */ "./src/js/lib/modules/actions.js");
+/* harmony import */ var _modules_handlers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/handlers */ "./src/js/lib/modules/handlers.js");
+/* harmony import */ var _modules_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/actions */ "./src/js/lib/modules/actions.js");
+
 
 
 
@@ -158,29 +160,108 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+ // Если аргумента нет, то получаем содержимое тэга html
+// Если аргумент был передан, то перезаписываем содержимое тэга переданным аргументом
 
-
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.on = function (eventName, callback) {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.html = function (content) {
   for (let i = 0; i < this.length; i++) {
-    if (!eventName || !callback) return this;
-    this[i].addEventListener(eventName, callback);
+    if (content) this[i].innerHTML = content;else return this[i].innerHTML;
+  }
+
+  return this;
+}; // Работа с элементом по заданному индексу
+
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.eq = function (index) {
+  const swap = this[index],
+        objLength = Object.keys(this).length; // Очищаем объект от элементов
+
+  for (let i = 0; i < objLength; i++) {
+    delete this[i];
+  } // Добавляем в объект единственный элемент
+
+
+  this[0] = swap;
+  this.length = 1;
+  return this;
+}; // Получение номера элемента по порядку
+
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.index = function () {
+  const parent = this[0].parentNode,
+        childs = [...parent.children];
+
+  const findMyIndex = item => {
+    return item == this[0];
+  };
+
+  return childs.findIndex(findMyIndex);
+}; // Найти все элементы по указанному Селектору
+
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.find = function (selector) {
+  let numberOfItems = 0,
+      counter = 0;
+  const copyObj = Object.assign({}, this);
+
+  for (let i = 0; i < copyObj.length; i++) {
+    const arr = copyObj[i].querySelectorAll(selector);
+    if (arr.length === 0) continue;
+
+    for (let j = 0; j < arr.length; j++) {
+      this[counter] = arr[j];
+      counter++;
+    }
+
+    numberOfItems += arr.length;
+  }
+
+  this.length = numberOfItems;
+
+  for (; numberOfItems < Object.keys(this).length; numberOfItems++) {
+    delete this[numberOfItems];
   }
 
   return this;
 };
 
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.off = function (eventName, callback) {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.closest = function (selector) {
+  let counter = 0;
+
   for (let i = 0; i < this.length; i++) {
-    if (!eventName || !callback) return this;
-    this[i].removeEventListener(eventName, callback);
+    if (this[i].closest(selector) === null) return this;
+    this[i] = this[i].closest(selector);
+    counter++;
+  }
+
+  for (; counter < Object.keys(this).length; counter++) {
+    delete this[counter];
   }
 
   return this;
 };
 
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.click = function (handler) {
-  for (let i = 0; i < this.length; i++) {
-    if (handler) this[i].addEventListener('click', handler);else this[i].click();
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.siblings = function () {
+  let numberOfItems = 0,
+      counter = 0;
+  const copyObj = Object.assign({}, this);
+
+  for (let i = 0; i < copyObj.length; i++) {
+    const arr = copyObj[i].parentNode.children;
+
+    for (let j = 0; j < arr.length; j++) {
+      if (copyObj[i] === arr[j]) continue;
+      this[counter] = arr[j];
+      counter++;
+    }
+
+    numberOfItems += arr.length - 1;
+  }
+
+  this.length = numberOfItems;
+
+  for (; numberOfItems < Object.keys(this).length; numberOfItems++) {
+    delete this[numberOfItems];
   }
 
   return this;
@@ -241,7 +322,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
 
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.show = function () {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.showElem = function () {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].style) continue;
     this[i].style.display = '';
@@ -250,7 +331,7 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.show = function () {
   return this;
 };
 
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.hide = function () {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.hideElem = function () {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].style) continue;
     this[i].style.display = 'none';
@@ -259,10 +340,50 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.hide = function () {
   return this;
 };
 
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.toggle = function () {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.toggleDisplay = function () {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].style) continue;
     if (this[i].style.display === 'none') this[i].style.display = '';else this[i].style.display = 'none';
+  }
+
+  return this;
+};
+
+/***/ }),
+
+/***/ "./src/js/lib/modules/handlers.js":
+/*!****************************************!*\
+  !*** ./src/js/lib/modules/handlers.js ***!
+  \****************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.on = function (eventName, callback) {
+  for (let i = 0; i < this.length; i++) {
+    if (!eventName || !callback) return this;
+    this[i].addEventListener(eventName, callback);
+  }
+
+  return this;
+};
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.off = function (eventName, callback) {
+  for (let i = 0; i < this.length; i++) {
+    if (!eventName || !callback) return this;
+    this[i].removeEventListener(eventName, callback);
+  }
+
+  return this;
+};
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.click = function (handler) {
+  for (let i = 0; i < this.length; i++) {
+    if (handler) this[i].addEventListener('click', handler);else this[i].click();
   }
 
   return this;
@@ -282,8 +403,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/lib */ "./src/js/lib/lib.js");
 
 $('button').on('click', function () {
-  $(this).toggleClass('active');
+  $('div').eq(0).toggleClass('active');
 });
+$('div').click(function () {
+  console.log($(this).index());
+}); // console.log($('div').eq(2).find('.more'));
+// console.log($('.some').closest('.findme2').addClass('test'));
+// console.log($('.more').eq(0).siblings());
+
+console.log($('.findme').siblings());
 
 /***/ })
 
