@@ -1,12 +1,12 @@
 import './lib/lib';
 
-$('button').on('click', function () {
-    $('div').eq(0).toggleClass('active');
-});
-
-$('div').click(function () {
-    console.log($(this).index());
-});
+// $('button').on('click', function () {
+//     $('div').eq(0).toggleClass('active');
+// });
+//
+// $('div').click(function () {
+//     console.log($(this).index());
+// });
 
 // console.log($('div').eq(2).find('.more'));
 
@@ -14,4 +14,6 @@ $('div').click(function () {
 
 // console.log($('.more').eq(0).siblings());
 
-console.log($('.findme').siblings());
+// console.log($('.findme').siblings());
+
+// $('button').fadeOut(1800);
