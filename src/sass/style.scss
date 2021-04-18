@@ -1,20 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-button {
-    width: 150px;
-    height: 50px;
-    border: none;
-    background-color: aqua;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.active {
-    font-size: 20px;
-    color: red;
-    font-weight: bold;
-}
+@import "./general/index.scss";
+@import "./components/index.scss";
+@import "./helpers/index.scss";

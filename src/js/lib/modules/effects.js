@@ -1,5 +1,38 @@
 import $ from '../core'
 
+// Показать элемент
+$.prototype.fadeIn = function (dur, display='block', fin) {
+    for (let i = 0; i < this.length; i++) {
+        this.showDisplayBlock(i, dur, fin, display);
+    }
+    return this;
+};
+
+// Скрыть элемент
+$.prototype.fadeOut = function (dur, fin) {
+    for (let i = 0; i < this.length; i++) {
+        this.hideDisplayBlock(i, dur, fin);
+    }
+    return this;
+};
+
+// Автоматичеси скрыть/показать элемент
+$.prototype.fadeToggle = function (dur, display='block', fin) {
+    for (let i = 0; i < this.length; i++) {
+        // Достать значение из Computed сформированного в Браузере
+        // Достучаться до значений можно через window.getComputedStyle()
+        if (window.getComputedStyle(this[i]).display === 'none') {
+            this.showDisplayBlock(i, dur, fin, display);
+        } else {
+            for (let i = 0; i < this.length; i++) {
+                this.hideDisplayBlock(i, dur, fin);
+            }
+        }
+    }
+    return this;
+};
+
+// Технические
 // Техническая функция по работе со всеми анимациями
 $.prototype.animateOverTime = function (duration, callback, final) {
     let timeStart;
@@ -18,40 +51,28 @@ $.prototype.animateOverTime = function (duration, callback, final) {
             if (typeof final === 'function') final();
         }
     }
-
     return _animateOverTime;
 };
 
-// Показать элемент
-$.prototype.fadeIn = function (dur, display, fin) {
-    for (let i = 0; i < this.length; i++) {
-        this[i].style.display = display || 'block'; //синтаксис устарел
+// Для Показа элемента
+$.prototype.showDisplayBlock = function (item, dur, fin, display) {
+    this[item].style.display = display;
 
-        const _fadeIn = (completion) => {
-            this[i].style.opacity = completion;
-        };
+    const _fadeAction = (completion) => {
+        this[item].style.opacity = completion;
+    };
 
-        const ani = this.animateOverTime(dur, _fadeIn, fin);
-
-        requestAnimationFrame(ani);
-    }
-
-    return this;
+    const ani = this.animateOverTime(dur, _fadeAction, fin);
+    requestAnimationFrame(ani);
 };
 
-// Скрыть элемент
-$.prototype.fadeOut = function (dur, fin) {
-    for (let i = 0; i < this.length; i++) {
-        const _fadeOut = (completion) => {
-            this[i].style.opacity = 1 - completion;
+// Для Скрытия элемент
+$.prototype.hideDisplayBlock = function (item, dur, fin) {
+    const _fadeAction = (completion) => {
+        this[item].style.opacity = 1 - completion;
+        if (completion === 1) this[item].style.display = 'none';
+    };
 
-            if (completion === 1) this[i].style.display = 'none';
-        };
-
-        const ani = this.animateOverTime(dur, _fadeOut, fin);
-
-        requestAnimationFrame(ani);
-    }
-
-    return this;
+    const ani = this.animateOverTime(dur, _fadeAction, fin);
+    requestAnimationFrame(ani);
 };
