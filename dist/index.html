@@ -9,82 +9,231 @@
 </head>
 <body>
     <div class="container">
+        <!--   Cards     -->
+        <div class="cardsWrap">
+            <br>
+            <br>
+            <h2>Cards</h2>
+            <br>
+            <br>
+
+            <div class="goods d-flex f-space-between">
+                <div class="card">
+                    <img class="card-img" style="height: 251px; width: auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVltyD4AzRojdHZg_J42Mklb9FuCUlEmTwQg&usqp=CAU" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">Card title</h3>
+                        <p class="card-text">lorem
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias architecto aspernatur, corporis dicta enim, itaque laborum molestiae nihil nobis nulla officia officiis optio porro quibusdam rem saepe, temporibus? Porro, sed.
+                        </p>
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Link to</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="https://shop.tate.org.uk/dw/image/v2/BBPB_PRD/on/demandware.static/-/Sites-TateMasterShop/default/dw6ead1666/waskan1502_kandinsky_cossacks_custom_print_large.jpg?sw=340" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">Card title</h3>
+                        <p class="card-text">lorem
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias architecto aspernatur, corporis dicta enim, itaque laborum molestiae nihil nobis nulla officia officiis optio porro quibusdam rem saepe, temporibus? Porro, sed.
+                        </p>
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">Link to</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" style="height: 251px; width: auto" src="https://d3rf6j5nx5r04a.cloudfront.net/BHCE0eNTRzlYaolJugOjEZDYtLE=/750x496/filters:quality(95)/product/a/6/cf7b80084e1c4af7af6aee9fcbfcbf7f_opt.jpg" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">Card title</h3>
+                        <p class="card-text">lorem
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias architecto aspernatur, corporis dicta enim, itaque laborum molestiae nihil nobis nulla officia officiis optio porro quibusdam rem saepe, temporibus? Porro, sed.
+                        </p>
+                        <a href="#" id="triggerDynamicModal" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalDynamic">Link to</a>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <hr>
+        </div>
+        <!--   Modal     -->
+        <div class="ModalWrap">
+            <br>
+            <br>
+            <h2>Modal</h2>
+            <br>
+            <br>
+
+            <div class="modal" id="exampleModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <button class="close" data-close>
+                            <span>&times;</span>
+                        </button>
+                        <div class="modal-header">
+                            <h3 class="modal-title">Modal title</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium consequatur ea explicabo labore modi natus nesciunt non, possimus, praesentium, quidem ratione reiciendis repellat saepe sapiente. Adipisci ipsa placeat quam!
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" data-close>Close</button>
+                            <button class="btn btn-success">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" id="exampleModal2">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <button class="close" data-close>
+                            <span>&times;</span>
+                        </button>
+                        <div class="modal-header">
+                            <h3 class="modal-title">Modal title #2</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" data-close>Close</button>
+                            <button class="btn btn-success">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <hr>
+        </div>
         <!--   Dropdown Menu     -->
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton">Dropdown static</button>
-            <div class="dropdown-menu" data-toggle-id="dropdownMenuButton">
-                <a href="#" class="dropdown-item">Action</a>
-                <a href="#" class="dropdown-item">Action #2</a>
-                <a href="#" class="dropdown-item">Action #3</a>
+        <div class="drop">
+            <br>
+            <br>
+            <h2>Dropdown</h2>
+            <br>
+            <br>
+
+            <!--    Static render    -->
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton">Dropdown static</button>
+                <div class="dropdown-menu" data-toggle-id="dropdownMenuButton">
+                    <a href="#" class="dropdown-item">Action</a>
+                    <a href="#" class="dropdown-item">Action #2</a>
+                    <a href="#" class="dropdown-item">Action #3</a>
+                </div>
             </div>
-        </div>
 
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton2">Dropdown static</button>
-            <div class="dropdown-menu" data-toggle-id="dropdownMenuButton2">
-                <a href="#" class="dropdown-item">Action</a>
-                <a href="#" class="dropdown-item">Action #2</a>
-                <a href="#" class="dropdown-item">Action #3</a>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton2">Dropdown static</button>
+                <div class="dropdown-menu" data-toggle-id="dropdownMenuButton2">
+                    <a href="#" class="dropdown-item">Action</a>
+                    <a href="#" class="dropdown-item">Action #2</a>
+                    <a href="#" class="dropdown-item">Action #3</a>
+                </div>
             </div>
+
+            <!--    Dynamic render    -->
+            <div class="wrap"></div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <hr>
+        </div>
+        <!--    Fade    -->
+        <div class="fadeWrap">
+            <br>
+            <br>
+            <h2>Fade</h2>
+            <br>
+            <br>
+
+            <button class="btn btn-primary m20" id="first">Fade out first text.</button>
+            <button class="btn btn-dark m20" data-count="second">Fade out second text.</button>
+            <button class="btn btn-warning m20" id="third">Fade out all text.</button>
+
+            <div class="w-500 block-center mt-20">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cum distinctio dolor, dolorem iste
+                molestiae, ratione reiciendis rem repudiandae unde vel, veniam voluptatem. Ab accusamus dicta dolores
+                hic maiores maxime? Accusantium animi aut consequatur corporis harum id illum maxime, omnis placeat quo reiciendis sit?
+                Assumenda, autem cumque enim ex fugit, harum ipsa praesentium quae quas tempora ullam, vel veritatis
+                vitae? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cum distinctio dolor, dolorem iste
+                molestiae, ratione reiciendis rem repudiandae unde vel, veniam voluptatem. Ab accusamus dicta dolores
+                hic maiores maxime? Accusantium animi aut consequatur corporis harum id illum maxime, omnis placeat quo reiciendis sit?
+                Assumenda, autem cumque enim ex fugit, harum ipsa praesentium quae quas tempora ullam, vel veritatis
+                vitae?
+            </div>
+
+            <div class="w-500 block-center mt-20">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cum distinctio dolor, dolorem iste
+                molestiae, ratione reiciendis rem repudiandae unde vel, veniam voluptatem. Ab accusamus dicta dolores
+                hic maiores maxime? Accusantium animi aut consequatur corporis harum id illum maxime, omnis placeat quo reiciendis sit?
+                Assumenda, autem cumque enim ex fugit, harum ipsa praesentium quae quas tempora ullam, vel veritatis
+                vitae? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cum distinctio dolor, dolorem iste
+                molestiae, ratione reiciendis rem repudiandae unde vel, veniam voluptatem. Ab accusamus dicta dolores
+                hic maiores maxime? Accusantium animi aut consequatur corporis harum id illum maxime, omnis placeat quo reiciendis sit?
+                Assumenda, autem cumque enim ex fugit, harum ipsa praesentium quae quas tempora ullam, vel veritatis
+                vitae?
+            </div>
+            <br>
+            <br>
+            <hr>
+            <br>
+            <br>
+        </div>
+        <!--   Buttons     -->
+        <div class="buttons">
+            <h2>Buttons</h2>
+            <br>
+            <br>
+
+            <button class="btn">CLick me!</button>
+            <button class="btn btn-primary">CLick me!</button>
+            <button class="btn btn-success">CLick me!</button>
+            <button class="btn btn-danger">CLick me!</button>
+            <button class="btn btn-warning">CLick me!</button>
+            <button class="btn btn-dark">CLick me!</button>
+            <br>
+            <br>
+
+            <button class="btn">CLick me!</button>
+            <button class="btn btn-outline-primary">CLick me!</button>
+            <button class="btn btn-outline-success">CLick me!</button>
+            <button class="btn btn-outline-danger">CLick me!</button>
+            <button class="btn btn-outline-warning">CLick me!</button>
+            <button class="btn btn-outline-dark">CLick me!</button>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <hr>
         </div>
 
-        <div class="wrap"></div>
+        <!--   Template     -->
+        <div class="template">
+            <br>
+            <br>
+            <h2>Template</h2>
+            <br>
+            <br>
 
-        <br>
-        <br>
-        <hr>
-        <br>
-        <br>
-        <button class="btn btn-primary m20" id="first">Fade out first text.</button>
-        <button class="btn btn-dark m20" data-count="second">Fade out second text.</button>
-        <button class="btn btn-warning m20" id="third">Fade out all text.</button>
-
-        <div class="w-500 block-center mt-20">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cum distinctio dolor, dolorem iste
-            molestiae, ratione reiciendis rem repudiandae unde vel, veniam voluptatem. Ab accusamus dicta dolores
-            hic maiores maxime? Accusantium animi aut consequatur corporis harum id illum maxime, omnis placeat quo reiciendis sit?
-            Assumenda, autem cumque enim ex fugit, harum ipsa praesentium quae quas tempora ullam, vel veritatis
-            vitae? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cum distinctio dolor, dolorem iste
-            molestiae, ratione reiciendis rem repudiandae unde vel, veniam voluptatem. Ab accusamus dicta dolores
-            hic maiores maxime? Accusantium animi aut consequatur corporis harum id illum maxime, omnis placeat quo reiciendis sit?
-            Assumenda, autem cumque enim ex fugit, harum ipsa praesentium quae quas tempora ullam, vel veritatis
-            vitae?
+            <br>
+            <br>
+            <br>
+            <br>
+            <hr>
         </div>
-
-        <div class="w-500 block-center mt-20">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cum distinctio dolor, dolorem iste
-            molestiae, ratione reiciendis rem repudiandae unde vel, veniam voluptatem. Ab accusamus dicta dolores
-            hic maiores maxime? Accusantium animi aut consequatur corporis harum id illum maxime, omnis placeat quo reiciendis sit?
-            Assumenda, autem cumque enim ex fugit, harum ipsa praesentium quae quas tempora ullam, vel veritatis
-            vitae? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cum distinctio dolor, dolorem iste
-            molestiae, ratione reiciendis rem repudiandae unde vel, veniam voluptatem. Ab accusamus dicta dolores
-            hic maiores maxime? Accusantium animi aut consequatur corporis harum id illum maxime, omnis placeat quo reiciendis sit?
-            Assumenda, autem cumque enim ex fugit, harum ipsa praesentium quae quas tempora ullam, vel veritatis
-            vitae?
-        </div>
-        <br>
-        <br>
-        <hr>
-        <br>
-        <br>
-
-        <button class="btn">CLick me!</button>
-        <button class="btn btn-primary">CLick me!</button>
-        <button class="btn btn-success">CLick me!</button>
-        <button class="btn btn-danger">CLick me!</button>
-        <button class="btn btn-warning">CLick me!</button>
-        <button class="btn btn-dark">CLick me!</button>
-        <br>
-        <br>
-
-        <button class="btn">CLick me!</button>
-        <button class="btn btn-outline-primary">CLick me!</button>
-        <button class="btn btn-outline-success">CLick me!</button>
-        <button class="btn btn-outline-danger">CLick me!</button>
-        <button class="btn btn-outline-warning">CLick me!</button>
-        <button class="btn btn-outline-dark">CLick me!</button>
     </div>
-    
     <script src='script.js'></script>
 </body>
 </html>

@@ -1,6 +1,43 @@
 import './lib/lib';
 import $ from "./lib/core";
 
+// Инициализация статичных модальных окон
+$('[data-toggle="modal"]').modal();
+
+// Динамическое создание модальных окон
+$('#triggerDynamicModal').click(() => $('#triggerDynamicModal').createModal({
+    text: {
+        title: 'Dynamic create modal',
+        body: '3/Lorem ipsum dolor sit amet/3'
+    },
+    btns: {
+        count: 3,
+        settings: [
+            [
+                'Close',
+                ['btn-danger', 'mr-10'],
+                true
+            ],
+            [
+                'Save changes',
+                ['btn-success'],
+                false,
+                () => {
+                    alert('Data saved...');
+                }
+            ],
+            [
+                'Another btn',
+                ['btn-warning', 'ml-10'],
+                false,
+                () => {
+                    alert('Hello, World!');
+                }
+            ]
+        ]
+    }
+}));
+
 // Динамическая верстка for DROPDOWN
 $('.wrap').html(`
     <div class="dropdown mt-20">

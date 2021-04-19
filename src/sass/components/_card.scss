@@ -1,0 +1,25 @@
+.card {
+    width: 35rem;
+    background-color: $white;
+    border: 1px solid rgba(0,0,0, .2);
+    border-radius: 4px;
+    box-shadow: 5px 5px 30px rgba(0,0,0, .1);
+    overflow: hidden;
+    &:hover {
+        box-shadow: 3px 3px 30px rgba(0,0,0, .18);
+    }
+    &-img {
+        width: 100%;
+    }
+    &-body {
+        padding: 2rem;
+    }
+    &-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    &-text {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+}

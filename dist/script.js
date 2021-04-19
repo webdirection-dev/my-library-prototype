@@ -112,6 +112,134 @@ Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.dropdown-toggle').dropdo
 
 /***/ }),
 
+/***/ "./src/js/lib/components/modal.js":
+/*!****************************************!*\
+  !*** ./src/js/lib/components/modal.js ***!
+  \****************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+ // Для окон, ранее сверстанных в html
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.modal = function (created) {
+  const scroll = _calcScroll(); // Показать модальное окно
+
+
+  for (let i = 0; i < this.length; i++) {
+    const target = this[i].getAttribute('data-target');
+    Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).click(event => {
+      event.preventDefault();
+      Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(target).fadeIn(500);
+      document.body.style.overflow = 'hidden'; // добавляем margin чтобы не дергался скролл у модального окна
+
+      document.body.style.marginRight = `${scroll}px`;
+    }); // Закрыть модальное окно по клике на крестик и кнопку
+
+    const closeElements = document.querySelectorAll(`${target} [data-close]`);
+    closeElements.forEach(item => {
+      Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(item).click(() => {
+        Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(target).fadeOut(500);
+        document.body.style.overflow = ''; // убираем margin чтобы не дергался скролл у модального окна
+
+        document.body.style.marginRight = `0px`; //функционал для динамически созданного модального окна
+
+        if (created) document.querySelector(target).remove();
+      });
+    }); // Закрыть модальное окно по клике на подложку
+
+    Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(target).click(event => {
+      if (event.target.classList.contains('modal')) {
+        Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(target).fadeOut(500);
+        document.body.style.overflow = ''; // убираем margin чтобы не дергался скролл у модального окна
+
+        document.body.style.marginRight = `0px`; //функционал для динамически созданного модального окна
+
+        if (created) document.querySelector(target).remove();
+      }
+    });
+  } // Технические
+  // Убираем дёргание скролла
+
+
+  function _calcScroll() {
+    let div = document.createElement('div');
+    div.style.width = '50px';
+    div.style.height = '50px';
+    div.style.overflowY = 'scroll';
+    div.style.visibility = 'hidden';
+    document.body.appendChild(div); // offsetWidth - ширина всего окна
+    // clientWidth - ширина окна без скролла
+    // offsetWidth - clientWidth = ширина самого скролла
+
+    let scrollWidth = div.offsetWidth - div.clientWidth;
+    div.remove();
+    return scrollWidth;
+  }
+}; // Динамически создаваемые окна
+
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.createModal = function ({
+  text,
+  btns
+} = {}) {
+  const {
+    title,
+    body
+  } = text; // Деструктурицация объектов text и btns
+
+  const {
+    count,
+    settings
+  } = btns; // btns = {count: num, settings: [[title, [className, className], close, callback], ...]}
+
+  for (let i = 0; i < this.length; i++) {
+    let modal = document.createElement('div');
+    modal.classList.add('modal'); // modal.setAttribute('id', this[i].getAttribute('data-target'));
+
+    modal.setAttribute('id', this[i].getAttribute('data-target').slice(1)); // Создать правильно отрабатывающие кнопки для окна
+    // btns = {count: num, settings: [[title, [className, className], close, callback], ...]}
+
+    const buttons = [];
+
+    for (let j = 0; j < count; j++) {
+      let btn = document.createElement('button');
+      btn.textContent = settings[j][0];
+      btn.classList.add('btn', ...settings[j][1]);
+      if (settings[j][2]) btn.setAttribute('data-close', 'true');
+      if (settings[j][3] && typeof settings[j][3] === 'function') btn.addEventListener('click', settings[j][3]);
+      buttons.push(btn);
+    }
+
+    modal.innerHTML = `
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button class="close" data-close>
+                        <span>&times;</span>
+                    </button>
+                    <div class="modal-header">
+                        <h3 class="modal-title">${title}</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            ${body}
+                        </p>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        `;
+    modal.querySelector('.modal-footer').append(...buttons);
+    document.body.appendChild(modal);
+    Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).modal(true);
+    Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i].getAttribute('data-target')).fadeIn(500);
+  }
+};
+
+/***/ }),
+
 /***/ "./src/js/lib/core.js":
 /*!****************************!*\
   !*** ./src/js/lib/core.js ***!
@@ -169,6 +297,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/actions */ "./src/js/lib/modules/actions.js");
 /* harmony import */ var _modules_effects__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/effects */ "./src/js/lib/modules/effects.js");
 /* harmony import */ var _components_dropdown__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/dropdown */ "./src/js/lib/components/dropdown.js");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/modal */ "./src/js/lib/components/modal.js");
+
 
 
 
@@ -522,7 +652,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/lib */ "./src/js/lib/lib.js");
 /* harmony import */ var _lib_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib/core */ "./src/js/lib/core.js");
 
- // Динамическая верстка for DROPDOWN
+ // Инициализация статичных модальных окон
+
+Object(_lib_core__WEBPACK_IMPORTED_MODULE_1__["default"])('[data-toggle="modal"]').modal(); // Динамическое создание модальных окон
+
+Object(_lib_core__WEBPACK_IMPORTED_MODULE_1__["default"])('#triggerDynamicModal').click(() => Object(_lib_core__WEBPACK_IMPORTED_MODULE_1__["default"])('#triggerDynamicModal').createModal({
+  text: {
+    title: 'Dynamic create modal',
+    body: '3/Lorem ipsum dolor sit amet/3'
+  },
+  btns: {
+    count: 3,
+    settings: [['Close', ['btn-danger', 'mr-10'], true], ['Save changes', ['btn-success'], false, () => {
+      alert('Data saved...');
+    }], ['Another btn', ['btn-warning', 'ml-10'], false, () => {
+      alert('Hello, World!');
+    }]]
+  }
+})); // Динамическая верстка for DROPDOWN
 
 Object(_lib_core__WEBPACK_IMPORTED_MODULE_1__["default"])('.wrap').html(`
     <div class="dropdown mt-20">
