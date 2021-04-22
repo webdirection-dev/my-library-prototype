@@ -1,0 +1,35 @@
+.tab {
+    max-width: 70rem;
+    &-panel {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-height: 5rem;
+        border: 1px solid $gray2;
+        border-radius: 4px 4px 0 0;
+    }
+    &-item {
+        font-size: 1.8rem;
+        line-height: 2.7rem;
+        border-right: 1px solid $gray2;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        &:last-child {
+            border-right: none;
+        }
+        &--active {
+            background-color: $gray1;
+        }
+    }
+    &-content {
+        display: none;
+        font-size: 1.2rem;
+        border: 1px solid $gray2;
+        border-top: none;
+        border-radius: 0 0 4px 4px;
+        padding: 2rem;
+        &--active {
+            display: block;
+        }
+    }
+}

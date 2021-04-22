@@ -66,6 +66,9 @@ $.prototype.modal = function (created) {
     }
 };
 
+// Инициализация статичных модальных окон
+$('[data-toggle="modal"]').modal();
+
 // Динамически создаваемые окна
 $.prototype.createModal = function ({text, btns} = {}) {
     const { title, body } = text; // Деструктурицация объектов text и btns
@@ -74,7 +77,6 @@ $.prototype.createModal = function ({text, btns} = {}) {
     for (let i = 0; i < this.length; i++) {
         let modal = document.createElement('div');
         modal.classList.add('modal');
-        // modal.setAttribute('id', this[i].getAttribute('data-target'));
         modal.setAttribute('id', this[i].getAttribute('data-target').slice(1));
 
         // Создать правильно отрабатывающие кнопки для окна

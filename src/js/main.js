@@ -1,9 +1,6 @@
 import './lib/lib';
 import $ from "./lib/core";
 
-// Инициализация статичных модальных окон
-$('[data-toggle="modal"]').modal();
-
 // Динамическое создание модальных окон
 $('#triggerDynamicModal').click(() => $('#triggerDynamicModal').createModal({
     text: {
@@ -49,6 +46,7 @@ $('.wrap').html(`
             </div>
         </div>
 `);
+
 $('.dropdown-toggle2').dropdown();
 
 // Скрыть текст
