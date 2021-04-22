@@ -6,8 +6,12 @@ import './modules/handlers';
 import './modules/actions';
 import './modules/effects';
 
-import './components/dropdown';
+import './components/mask';
 import './components/modal';
 import './components/tab';
+import './components/accordion';
+
+import './components/pageups';
+import './components/dropdown';
 
 export default $;
