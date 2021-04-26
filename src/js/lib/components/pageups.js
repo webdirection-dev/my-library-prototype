@@ -37,4 +37,4 @@ $.prototype.pageup = function () {
     }
 };
 
-$('[href^="#"]').pageup();
+$('.pageup').pageup();
