@@ -1910,6 +1910,77 @@ Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.accordion-head').accordi
 
 /***/ }),
 
+/***/ "./src/js/lib/components/carousel.js":
+/*!*******************************************!*\
+  !*** ./src/js/lib/components/carousel.js ***!
+  \*******************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+
+
+_core__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.carousel = function () {
+  for (let i = 0; i < this.length; i++) {
+    let offset = 0,
+        slideIndex = 0;
+    const width = window.getComputedStyle(this[i].querySelector('.carousel-inner')).width,
+          slides = this[i].querySelectorAll('.carousel-items'),
+          slidesField = this[i].querySelector('.carousel-slides'),
+          slidesImg = this[i].querySelectorAll('.carousel-img'),
+          dots = this[i].querySelectorAll('.carousel-indicators li'); // устанавливаем ширину группе слайдов
+
+    slidesField.style.width = 100 * slides.length + '%'; // устанавливаем ширину каждому отдельному слайду
+
+    slidesImg.forEach(item => {
+      item.style.width = width;
+    }); // onClick
+
+    let widthReplace = +width.replace(/\D/g, '');
+    Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(this[i].querySelector('[data-slide="next"]')).click(event => {
+      event.preventDefault(); //Движение слайдов
+
+      if (offset === widthReplace * (slides.length - 1)) offset = 0;else offset += widthReplace;
+      slidesField.style.transform = `translateX(-${offset}px)`; //slideIndex
+
+      if (slideIndex == slides.length - 1) slideIndex = 0;else slideIndex++; //dots
+
+      dots.forEach(item => item.classList.remove('active'));
+      dots[slideIndex].classList.add('active');
+    });
+    Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(this[i].querySelector('[data-slide="prev"]')).click(event => {
+      event.preventDefault(); //Движение слайдов
+
+      if (offset === 0) offset = widthReplace * (slides.length - 1);else offset -= widthReplace;
+      slidesField.style.transform = `translateX(-${offset}px)`; //slideIndex
+
+      if (slideIndex == 0) slideIndex = slides.length - 1;else slideIndex--; //dots
+
+      dots.forEach(item => item.classList.remove('active'));
+      dots[slideIndex].classList.add('active');
+    });
+    const sliderId = this[i].getAttribute('id');
+    Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(`#${sliderId} .carousel-indicators li`).click(event => {
+      const slideTo = event.target.getAttribute('data-slide-to');
+      slideIndex = slideTo;
+      offset = widthReplace * slideTo;
+      slidesField.style.transform = `translateX(-${offset}px)`; //dots
+
+      dots.forEach(item => item.classList.remove('active'));
+      dots[slideIndex].classList.add('active');
+    });
+  }
+};
+
+Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])('.carousel').carousel();
+
+/***/ }),
+
 /***/ "./src/js/lib/components/dropdown.js":
 /*!*******************************************!*\
   !*** ./src/js/lib/components/dropdown.js ***!
@@ -2266,8 +2337,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/modal */ "./src/js/lib/components/modal.js");
 /* harmony import */ var _components_tab__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/tab */ "./src/js/lib/components/tab.js");
 /* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/accordion */ "./src/js/lib/components/accordion.js");
-/* harmony import */ var _components_pageups__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/pageups */ "./src/js/lib/components/pageups.js");
-/* harmony import */ var _components_dropdown__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/dropdown */ "./src/js/lib/components/dropdown.js");
+/* harmony import */ var _components_carousel__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/carousel */ "./src/js/lib/components/carousel.js");
+/* harmony import */ var _components_pageups__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/pageups */ "./src/js/lib/components/pageups.js");
+/* harmony import */ var _components_dropdown__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/dropdown */ "./src/js/lib/components/dropdown.js");
+
 
 
 

@@ -10,6 +10,7 @@ import './components/mask';
 import './components/modal';
 import './components/tab';
 import './components/accordion';
+import './components/carousel';
 
 import './components/pageups';
 import './components/dropdown';
