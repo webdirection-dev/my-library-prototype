@@ -62,6 +62,10 @@ $('#third').on('click', () => {
     $('.w-500').fadeToggle(800);
 });
 
+//Тестируем GET-запросы
+$().get('https://jsonplaceholder.typicode.com/todos/1')
+    .then(response => console.log(response))
+
 // $('button').on('click', function () {
 //     $('div').eq(0).toggleClass('active');
 // });
